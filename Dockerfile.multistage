@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM node:16-alpine AS builder
 
 WORKDIR /project
 
@@ -10,3 +10,10 @@ COPY . /project/
 
 RUN npm run build
 
+FROM nginx:1.24.0-alpine
+
+COPY --from=builder /project/build /usr/share/nginx/html
+
+EXPOSE 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
