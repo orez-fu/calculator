@@ -60,4 +60,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/calculator:action-${{ GITHUB_RUN_NUMBER }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/calculator:action-${{ github.run_number }}
